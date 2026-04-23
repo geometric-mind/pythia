@@ -9,3 +9,4 @@ import Kairos.Stats.GaussianRandomWalk
 import Kairos.Stats.DeploymentDesign
 import Kairos.Stats.PowerAnalysis
 import Kairos.Stats.HowardRamdasCS
+import Kairos.Stats.BettingCS
