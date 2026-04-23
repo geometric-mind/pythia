@@ -10,3 +10,4 @@ import Kairos.Stats.DeploymentDesign
 import Kairos.Stats.PowerAnalysis
 import Kairos.Stats.HowardRamdasCS
 import Kairos.Stats.BettingCS
+import Kairos.Stats.Sharpness
