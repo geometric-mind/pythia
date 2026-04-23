@@ -24,23 +24,53 @@ namespace Kairos.Stats
 
 open MeasureTheory ProbabilityTheory
 
-/-- Gaussian small-ball lower bound: the probability mass on a window
+/-
+The Gaussian density at mean 0 is monotone decreasing in |x|:
+if |x| ≤ |y| then gaussianPDFReal 0 v y ≤ gaussianPDFReal 0 v x.
+-/
+lemma gaussianPDFReal_abs_antitone (v : NNReal) (hv : v ≠ 0) (x y : ℝ)
+    (h : |x| ≤ |y|) :
+    gaussianPDFReal 0 v y ≤ gaussianPDFReal 0 v x := by
+  exact mul_le_mul_of_nonneg_left ( Real.exp_le_exp.mpr <| by rw [ div_le_div_iff_of_pos_right <| by positivity ] ; nlinarith [ abs_le.mp h, abs_mul_abs_self x, abs_mul_abs_self y ] ) <| by positivity;
+
+/-
+For x ∈ [c - ε, c] with ε > 0, we have |x| ≤ |c| + ε.
+-/
+lemma abs_le_abs_add_of_mem_Icc (c ε : ℝ) (hε : 0 < ε) (x : ℝ)
+    (hx : x ∈ Set.Icc (c - ε) c) :
+    |x| ≤ |c| + ε := by
+  cases abs_cases x <;> cases abs_cases c <;> linarith [ hx.1, hx.2 ]
+
+/-
+The measure (gaussianReal 0 v).real on Icc equals the integral of the density.
+-/
+lemma gaussianReal_real_Icc (v : NNReal) (hv : v ≠ 0) (a b : ℝ) :
+    (gaussianReal 0 v).real (Set.Icc a b) =
+    ∫ x in Set.Icc a b, gaussianPDFReal 0 v x := by
+  rw [ MeasureTheory.measureReal_def, gaussianReal_apply_eq_integral ];
+  · rw [ ENNReal.toReal_ofReal ( MeasureTheory.integral_nonneg fun x => gaussianPDFReal_nonneg _ _ _ ) ];
+  · assumption
+
+/-
+Gaussian small-ball lower bound: the probability mass on a window
 of width `ε` ending at a threshold `c` is at least `ε` times the
 density evaluated at the window's far-from-origin endpoint.
-
-This is the T3 ingredient for the vector / asymptotic sharpness
-adversary construction in the deployment-slack paper.  Proof outline:
-on the interval `[c − ε, c]` (when `c ≥ 0`; symmetric argument for
-`c < 0`) the Gaussian density `gaussianPDFReal 0 σ² x` is monotone
-decreasing in `|x|`; the minimum on the interval is attained at the
-endpoint with larger `|x|`, which is `c` when `c ≥ 0` or `c - ε` when
-`c < 0`.  Integration over the interval then bounds from below by the
-minimum density times the interval width. -/
+-/
 theorem gaussian_small_ball_lower_bound
     (σ : ℝ) (hσ : 0 < σ) (c : ℝ) (ε : ℝ) (hε : 0 < ε) :
-    (ProbabilityTheory.gaussianReal 0 (σ ^ 2)).real (Set.Icc (c - ε) c)
+    (ProbabilityTheory.gaussianReal 0 (Real.toNNReal (σ ^ 2))).real (Set.Icc (c - ε) c)
       ≥ ε * ProbabilityTheory.gaussianPDFReal 0 (Real.toNNReal (σ ^ 2))
           (|c| + ε) := by
-  sorry
+  rw [ gaussianReal_real_Icc ];
+  · refine' le_trans _ ( MeasureTheory.setIntegral_mono_on _ _ _ _ );
+    case refine'_2 => exact fun x => gaussianPDFReal 0 ( σ ^ 2 |> Real.toNNReal ) ( |c| + ε );
+    · norm_num [ hε.le ];
+    · norm_num;
+    · exact Continuous.integrableOn_Icc ( by unfold gaussianPDFReal; continuity );
+    · norm_num;
+    · intro x hx; apply_rules [ gaussianPDFReal_abs_antitone ] ;
+      · aesop;
+      · cases abs_cases x <;> cases abs_cases c <;> cases abs_cases ( |c| + ε ) <;> linarith [ hx.1, hx.2 ];
+  · aesop
 
 end Kairos.Stats
