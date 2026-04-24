@@ -40,17 +40,24 @@ theorem c_aCS_sharp_pos : 0 < c_aCS_sharp := by
   unfold c_aCS_sharp
   positivity
 
-/-- The sharp constants respect the family ranking: `c_aCS ≤ c_vector`
-(equivalent to `1/(2√(2π)) ≤ 1/(2√π)`, i.e. `√π ≤ √(2π)`). -/
+/-
+The sharp constants respect the family ranking: `c_aCS ≤ c_vector`
+(equivalent to `1/(2√(2π)) ≤ 1/(2√π)`, i.e. `√π ≤ √(2π)`).
+-/
 theorem c_sharp_ranking : c_aCS_sharp ≤ c_vector_sharp := by
   unfold c_aCS_sharp c_vector_sharp
-  sorry
+  gcongr;
+  linarith [ Real.pi_pos ]
 
-/-- Explicit arithmetic identity: `c_vector = √2 · c_HR` where
+/-
+Explicit arithmetic identity: `c_vector = √2 · c_HR` where
 `c_HR = 1/(2·√(2π))`. Matches the `η_vector = √2 · η_HR` ranking
-at the sharp-constant level. -/
+at the sharp-constant level.
+-/
 theorem c_vector_eq_sqrt_two_mul_c_HR :
     c_vector_sharp = Real.sqrt 2 * (1 / (2 * Real.sqrt (2 * Real.pi))) := by
-  sorry
+  rw [ c_vector_sharp, mul_comm ];
+  field_simp;
+  rw [ mul_comm, Real.sqrt_mul ( by positivity ) ]
 
 end Kairos.Stats
