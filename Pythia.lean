@@ -164,11 +164,7 @@ import Pythia.StochasticApproximation.Dvoretzky
 import Pythia.TimeSeries.NeweyWest
 import Pythia.Control.LyapunovODE
 import Pythia.Risk.CoherentMeasures
-import Pythia.Hardware
 -- ATH-1120: compression moves + per-optimization proof objects.
-import Pythia.Hardware.CompressionMoves
-import Pythia.Hardware.EngineContract
-import Pythia.Hardware.HammingOptProof
 -- Networking / protocol verification (ported from bbr3-starvation-bench).
 import Pythia.Networking
 -- Language semantics / type soundness (ported from kairos-cedar).
@@ -223,19 +219,3 @@ import Pythia.MechanismDesign
 -- ATH-940 distributed systems theorem library (Paxos, Lamport, 2PC).
 -- Basic.lean (paxos_quorum_intersection) added when Aristotle starter returns.
 import Pythia.Distributed
-import Pythia.Hardware.SEC.ChainComposition
-import Pythia.Hardware.SEC.FifoContract
-import Pythia.Hardware.SEC.FifoWidgetGoldGateRefinement
-import Pythia.Hardware.SEC.FifoWidgetInvariants
-import Pythia.Hardware.SEC.PacketTransform
-import Pythia.Hardware.SEC.RefinementRelation
-import Pythia.Hardware.SEC.RoundRobinContract
-import Pythia.Numerical.Accelerator.ReductionTree
-import Pythia.Numerical.Accelerator.TiledMatMul
-import Pythia.Numerical.Accelerator.QuantizedReduction
-import Pythia.Numerical.Accelerator.CausalMask
-import Pythia.Numerical.Accelerator.GQAReplication
-import Pythia.Numerical.Accelerator.KVCacheMonotone
-import Pythia.Numerical.Accelerator.RoPEOrthogonal
-import Pythia.Numerical.Accelerator.SoftcapLipschitz
-import Pythia.Numerical.Accelerator.GELULipschitz
