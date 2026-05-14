@@ -219,3 +219,51 @@ import Pythia.MechanismDesign
 -- ATH-940 distributed systems theorem library (Paxos, Lamport, 2PC).
 -- Basic.lean (paxos_quorum_intersection) added when Aristotle starter returns.
 import Pythia.Distributed
+
+-- ATH-1267 quant-finance sprint (no-arb, derivatives, risk, capital
+-- structure, CAPM, term structure). All sorry-free.
+import Pythia.Finance.AlmgrenChrissExecution
+import Pythia.Finance.AnnuityFactor
+import Pythia.Finance.BachelierTerminal
+import Pythia.Finance.BetaFromCorrelation
+import Pythia.Finance.BlackScholesGreeks
+import Pythia.Finance.BlackScholesIntrinsicLower
+import Pythia.Finance.BondZeroCoupon
+import Pythia.Finance.CRRBinomialStep
+import Pythia.Finance.CallPriceBounds
+import Pythia.Finance.CallPriceUpperBound
+import Pythia.Finance.CalmarRatio
+import Pythia.Finance.CointegrationResidual
+import Pythia.Finance.CompoundInterest
+import Pythia.Finance.ContinuousDividendForward
+import Pythia.Finance.DiscountFactor
+import Pythia.Finance.ExpectedShortfall
+import Pythia.Finance.ForwardPrice
+import Pythia.Finance.ForwardRateParity
+import Pythia.Finance.FxForward
+import Pythia.Finance.GARCHUpdate
+import Pythia.Finance.GeometricBrownianMotion
+import Pythia.Finance.GordonGrowth
+import Pythia.Finance.HedgeRatioMinVar
+import Pythia.Finance.ImpermanentLoss
+import Pythia.Finance.InformationRatio
+import Pythia.Finance.JensenAlpha
+import Pythia.Finance.Kelly
+import Pythia.Finance.MacaulayDuration
+import Pythia.Finance.MarkowitzFrontier
+import Pythia.Finance.ModiglianiMiller
+import Pythia.Finance.NetPresentValue
+import Pythia.Finance.OrnsteinUhlenbeck
+import Pythia.Finance.Perpetuity
+import Pythia.Finance.PortfolioVariance
+import Pythia.Finance.PutCallParity
+import Pythia.Finance.PutCallParityDividend
+import Pythia.Finance.RealisedVolatility
+import Pythia.Finance.SharpeBridge
+import Pythia.Finance.SharpeRatio
+import Pythia.Finance.SortinoRatio
+import Pythia.Finance.TreynorRatio
+import Pythia.Finance.ValueAtRisk
+import Pythia.Finance.VolatilityScaling
+import Pythia.Finance.YieldFromPrice
+import Pythia.Finance.Z3AuxiliaryDemo
