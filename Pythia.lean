@@ -259,6 +259,7 @@ import Pythia.Finance.PortfolioVariance
 import Pythia.Finance.PutCallParity
 import Pythia.Finance.PutCallParityDividend
 import Pythia.Finance.RealisedVolatility
+import Pythia.Finance.RiskParity
 import Pythia.Finance.SharpeBridge
 import Pythia.Finance.SharpeRatio
 import Pythia.Finance.SortinoRatio
