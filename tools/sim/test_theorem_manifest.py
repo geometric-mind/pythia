@@ -32,6 +32,9 @@ VALID_DOMAINS = {
     "thermodynamics", "numerical",
     # Batch 9 (ATH-753): cross-field expansion.
     "optimal_transport", "stochastic", "quantum", "game_theory",
+    # ATH-1267 Pythia expansion (quant-finance sprint + GPU-VM domains).
+    "finance", "epidemiology", "optimization", "signal_processing",
+    "verification",
 }
 
 VALID_MATHLIB_STATUS = {"novel", "retag", "extension"}
