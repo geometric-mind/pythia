@@ -245,6 +245,7 @@ import Pythia.Finance.GARCHUpdate
 import Pythia.Finance.GeometricBrownianMotion
 import Pythia.Finance.GordonGrowth
 import Pythia.Finance.HedgeRatioMinVar
+import Pythia.Finance.HestonLongRunVariance
 import Pythia.Finance.ImpermanentLoss
 import Pythia.Finance.InformationRatio
 import Pythia.Finance.JensenAlpha
