@@ -1,0 +1,9 @@
+[package]
+name = "pythia-credit-cva"
+version = "0.1.0"
+edition = "2021"
+description = "Verified CVA: nonneg, LGD monotone, netting benefit, wrong-way risk. Lean spec: Pythia.Finance.Credit.CVAProperties"
+license = "Apache-2.0"
+
+[dev-dependencies]
+proptest = "1"
