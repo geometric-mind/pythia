@@ -1,0 +1,10 @@
+[package]
+name = "pythia-portfolio-tca"
+version = "0.1.0"
+edition = "2021"
+description = "Transaction Cost Analysis: implementation shortfall, market impact, VWAP slippage"
+
+[dependencies]
+
+[dev-dependencies]
+proptest = "1"

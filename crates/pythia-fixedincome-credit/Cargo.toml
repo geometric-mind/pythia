@@ -1,0 +1,10 @@
+[package]
+name = "pythia-fixedincome-credit"
+version = "0.1.0"
+edition = "2021"
+description = "Credit curve term structure: hazard rates, survival curves, spread-hazard relationships"
+
+[dependencies]
+
+[dev-dependencies]
+proptest = "1"
