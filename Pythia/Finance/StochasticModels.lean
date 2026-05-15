@@ -26,3 +26,4 @@ import Pythia.Finance.MertonJumpDiffusion
 import Pythia.Finance.OrnsteinUhlenbeck
 import Pythia.Finance.FTAP
 import Pythia.Finance.StochasticDiscount
+import Pythia.Finance.ItoDiscrete
