@@ -1,0 +1,9 @@
+[package]
+name = "pythia-portfolio-riskbudget"
+version = "0.1.0"
+edition = "2021"
+description = "Verified Euler risk decomposition: MCR sums to total, equal risk contribution, HHI concentration. Lean spec: Pythia.Finance.Portfolio.RiskBudgetEuler"
+license = "Apache-2.0"
+
+[dev-dependencies]
+proptest = "1"
