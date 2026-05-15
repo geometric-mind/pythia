@@ -1,0 +1,9 @@
+[package]
+name = "pythia-stochastic-gbm"
+version = "0.1.0"
+edition = "2021"
+description = "Verified GBM path properties: positivity, log-normality, vol drag, drift monotonicity. Lean spec: Pythia.Finance.Stochastic.GBMProperties"
+license = "Apache-2.0"
+
+[dev-dependencies]
+proptest = "1"
