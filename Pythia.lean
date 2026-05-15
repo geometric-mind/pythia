@@ -352,6 +352,7 @@ import Pythia.Finance.Stochastic.FTAP
 import Pythia.Finance.Stochastic.GeometricBrownianMotion
 import Pythia.Finance.Stochastic.GBMProperties
 import Pythia.Finance.Stochastic.HestonLongRunVariance
+import Pythia.Finance.Stochastic.HestonProperties
 import Pythia.Finance.Stochastic.ItoDiscrete
 import Pythia.Finance.Stochastic.MertonJumpDiffusion
 import Pythia.Finance.Stochastic.OrnsteinUhlenbeck
