@@ -253,6 +253,7 @@ import Pythia.Finance.FTAP
 import Pythia.Finance.ForwardRateParity
 import Pythia.Finance.FxForward
 import Pythia.Finance.GARCHUpdate
+import Pythia.Finance.ItoDiscrete
 import Pythia.Finance.GarmanKlassVolatility
 import Pythia.Finance.GeometricBrownianMotion
 import Pythia.Finance.GordonGrowth
