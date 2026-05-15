@@ -333,6 +333,7 @@ import Pythia.Finance.Portfolio.ReturnAttribution
 import Pythia.Finance.Portfolio.RiskAdjustedReturn
 import Pythia.Finance.Portfolio.RiskParity
 import Pythia.Finance.Portfolio.RiskParityOptimal
+import Pythia.Finance.Portfolio.RiskBudgetEuler
 import Pythia.Finance.Portfolio.RiskReturnTradeoff
 import Pythia.Finance.Portfolio.SharpeBridge
 import Pythia.Finance.Portfolio.SharpeRatio
