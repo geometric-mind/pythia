@@ -1,0 +1,9 @@
+[package]
+name = "pythia-options-impliedvol"
+version = "0.1.0"
+edition = "2021"
+description = "Verified implied vol inversion: existence, uniqueness, Newton convergence. Lean spec: Pythia.Finance.Options.ImpliedVolInversion"
+license = "Apache-2.0"
+
+[dev-dependencies]
+proptest = "1"
