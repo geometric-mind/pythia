@@ -286,6 +286,7 @@ import Pythia.Finance.OrderBookInvariant
 import Pythia.Finance.OrnsteinUhlenbeck
 import Pythia.Finance.Perpetuity
 import Pythia.Finance.PortfolioRebalancing
+import Pythia.Finance.PortfolioOptimality
 import Pythia.Finance.PortfolioVariance
 import Pythia.Finance.PutCallParity
 import Pythia.Finance.PutCallParityDividend
