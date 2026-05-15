@@ -288,6 +288,7 @@ import Pythia.Finance.Options.BarrierOption
 import Pythia.Finance.Options.BlackFuturesOption
 import Pythia.Finance.Options.BlackScholesCallClosedForm
 import Pythia.Finance.Options.BlackScholesGreeks
+import Pythia.Finance.Options.GreeksBound
 import Pythia.Finance.Options.BlackScholesIntrinsicLower
 import Pythia.Finance.Options.BlackScholesPDE
 import Pythia.Finance.Options.CRRBinomialStep
