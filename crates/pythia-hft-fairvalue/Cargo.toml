@@ -1,0 +1,9 @@
+[package]
+name = "pythia-hft-fairvalue"
+version = "0.1.0"
+edition = "2021"
+description = "Verified micro-price and EWMA fair value estimators. Lean spec: Pythia.Finance.HFT.FairValueEstimator"
+license = "Apache-2.0"
+
+[dev-dependencies]
+proptest = "1"
