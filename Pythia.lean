@@ -282,6 +282,7 @@ import Pythia.Finance.RealisedVolatility
 import Pythia.Finance.ReturnAttribution
 import Pythia.Finance.RiskAdjustedReturn
 import Pythia.Finance.RiskParity
+import Pythia.Finance.RiskReturnTradeoff
 import Pythia.Finance.SharpeBridge
 import Pythia.Finance.SharpeRatio
 import Pythia.Finance.SortinoRatio
@@ -360,6 +361,7 @@ import Pythia.Numerical.PicardLindelofHelpers
 -- Optimization
 import Pythia.Optimization.BarrierFunction
 import Pythia.Optimization.ConjugateFunction
+import Pythia.Optimization.DualityGap
 import Pythia.Optimization.GradientDescentRate
 import Pythia.Optimization.LagrangianDuality
 import Pythia.Optimization.ProximalOperator
