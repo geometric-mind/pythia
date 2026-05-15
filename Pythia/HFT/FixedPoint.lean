@@ -88,7 +88,9 @@ theorem compare_le_correct {s : ℕ} (a b : FP s) :
   rw [div_le_div_iff₀
     (show (0 : ℚ) < ((2 ^ s : ℤ) : ℚ) by positivity)
     (show (0 : ℚ) < ((2 ^ s : ℤ) : ℚ) by positivity)]
-  sorry
+  constructor
+  · intro h; exact mul_le_mul_of_nonneg_right (by exact_mod_cast h) (by positivity)
+  · intro h; exact_mod_cast le_of_mul_le_mul_right h (by positivity : (0:ℚ) < ↑(2^s : ℤ))
 
 /-- **Overflow detection:** if |a.raw + b.raw| < 2^63, no overflow.
 This is the safety check every HFT system runs. -/
@@ -96,6 +98,12 @@ This is the safety check every HFT system runs. -/
 theorem no_overflow_add {a b : ℤ} {bound : ℤ}
     (ha : |a| < bound) (hb : |b| < bound) (hbound : 2 * bound ≤ 2 ^ 63) :
     |a + b| < 2 ^ 63 := by
-  sorry
+  calc |a + b| ≤ |a| + |b| := by
+        rcases abs_cases a with ⟨h1,_⟩ | ⟨h1,_⟩ <;>
+          rcases abs_cases b with ⟨h2,_⟩ | ⟨h2,_⟩ <;>
+          rcases abs_cases (a+b) with ⟨h3,_⟩ | ⟨h3,_⟩ <;> linarith
+    _ < bound + bound := by linarith
+    _ = 2 * bound := by ring
+    _ ≤ 2 ^ 63 := hbound
 
 end Pythia.HFT.FixedPoint

@@ -104,6 +104,8 @@ theorem net_position_bound {pos_final pos_initial sum_qty : ℤ}
     |sum_qty| ≤ |pos_initial| + limit := by
   have hsq : sum_qty = pos_final - pos_initial := by linarith
   rw [hsq]
-  sorry
+  rcases abs_cases (pos_final - pos_initial) with ⟨h1, _⟩ | ⟨h1, _⟩ <;>
+    rcases abs_cases pos_initial with ⟨h2, _⟩ | ⟨h2, _⟩ <;>
+    rcases abs_cases pos_final with ⟨h3, _⟩ | ⟨h3, _⟩ <;> linarith
 
 end Pythia.HFT.RiskGate
