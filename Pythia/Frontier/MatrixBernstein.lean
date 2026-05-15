@@ -91,6 +91,82 @@ of `exp` and `ENNReal.ofReal`.
 
 /-! ### Bernstein private helpers -/
 
+/-- **Sub-lemma A — Matrix Markov via trace of matrix exponential (Path B step 1).**
+
+On the event `‖S‖ ≥ t` for a symmetric sum `S = Σ X_k`, we have
+`λ_max(S) ≥ t`, so `tr(exp(θS)) ≥ exp(θt)`, giving by Markov:
+  `P(‖S‖ ≥ t) ≤ exp(−θt) · E[tr exp(θS)]`.
+
+**Status: sorry.** Atomic blockers (Mathlib v4.28 gaps):
+  (a) `linftyOpNorm` vs spectral norm: need `λ_max(A) ≤ ‖A‖` under placeholder norm.
+  (b) `tr(exp(A)) ≥ exp(λ_max(A))` for real symmetric `A`.
+  (c) Measurability of `ω ↦ Matrix.trace (NormedSpace.exp (θ • S ω))`.
+  (d) Scalar Markov lifted to ENNReal.
+-/
+private lemma bernstein_markov_tr_exp
+    {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω}
+    [IsProbabilityMeasure μ]
+    {n : ℕ} (X : Fin n → Ω → Matrix (Fin d) (Fin d) ℝ)
+    (h_sa : ∀ k, ∀ᵐ ω ∂μ, (X k ω).IsHermitian)
+    (t : ℝ) (ht : 0 < t) (θ : ℝ) (hθ : 0 < θ) :
+    let S := fun ω => (Finset.univ : Finset (Fin n)).sum (fun k => X k ω)
+    μ {ω | ‖S ω‖ ≥ t} ≤
+      ENNReal.ofReal (Real.exp (-θ * t) *
+        ∫ ω, Matrix.trace (NormedSpace.exp (θ • S ω)) ∂μ) := by
+  sorry
+
+/-- **Sub-lemma B — MGF subadditivity via Golden-Thompson + independence (Path B step 2).**
+
+For independent zero-mean summands, iterating Golden-Thompson and using
+independence to factor the expectation yields:
+  `E[tr exp(θ Σ X_k)] ≤ d · Πₖ E[tr exp(θ X_k)]`.
+
+**Status: sorry.** Atomic blockers (Mathlib v4.28 gaps):
+  (a) Golden-Thompson for real symmetric matrices (analogue of
+      `MatrixLieb.golden_thompson` which is stated for ℂ-Hermitian).
+  (b) Independence factoring of matrix MGFs via
+      `IndepFun.integral_mul_eq_integral_mul_integral` (entrywise).
+  (c) `tr(A₁·…·Aₙ) ≤ d · ‖A₁‖ · … · ‖Aₙ‖` sub-multiplicativity.
+-/
+private lemma bernstein_mgf_subadditivity
+    {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω}
+    [IsProbabilityMeasure μ]
+    {n : ℕ} (X : Fin n → Ω → Matrix (Fin d) (Fin d) ℝ)
+    (h_indep : ∀ i j, i ≠ j → ProbabilityTheory.IndepFun (X i) (X j) μ)
+    (h_sa : ∀ k, ∀ᵐ ω ∂μ, (X k ω).IsHermitian)
+    (h_zero_mean : ∀ k i j, ∫ ω, (X k ω) i j ∂μ = 0)
+    (θ : ℝ) (hθ : 0 < θ) :
+    let S := fun ω => (Finset.univ : Finset (Fin n)).sum (fun k => X k ω)
+    ∫ ω, Matrix.trace (NormedSpace.exp (θ • S ω)) ∂μ ≤
+      (d : ℝ) * ∏ k : Fin n, ∫ ω, Matrix.trace (NormedSpace.exp (θ • X k ω)) ∂μ := by
+  sorry
+
+/-- **Sub-lemma C — Per-summand Bernstein CGF bound (Path B step 3).**
+
+For a zero-mean symmetric r.v. `X` with `‖X‖ ≤ R` a.s. and variance
+proxy `σ_k²`, the trace-MGF satisfies:
+  `E[tr exp(θX)] ≤ d · exp(θ² σ_k² (exp(θR) − θR − 1) / R²)`.
+
+**Status: sorry.** Atomic blockers (Mathlib v4.28 gaps):
+  (a) Loewner-order bound `Xᵐ ⪯ R^{m-2} X²` for symmetric `X`, `‖X‖ ≤ R`.
+  (b) Trace-monotonicity: `A ⪯ B → tr A ≤ tr B` for real symmetric matrices.
+  (c) Interchange of `∫` and the matrix exponential power series.
+-/
+private lemma bernstein_cgf_per_summand
+    {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω}
+    [IsProbabilityMeasure μ]
+    (X : Ω → Matrix (Fin d) (Fin d) ℝ)
+    (R : ℝ) (sigma_k_sq : ℝ)
+    (hR : 0 < R) (hσ : 0 ≤ sigma_k_sq)
+    (h_sa : ∀ᵐ ω ∂μ, (X ω).IsHermitian)
+    (h_zero_mean : ∀ i j, ∫ ω, (X ω) i j ∂μ = 0)
+    (h_op_bound : ∀ᵐ ω ∂μ, ‖X ω‖ ≤ R)
+    (h_var_bound : ‖fun i j => ∫ ω, ((X ω) * (X ω)) i j ∂μ‖ ≤ sigma_k_sq)
+    (θ : ℝ) (hθ : 0 < θ) :
+    ∫ ω, Matrix.trace (NormedSpace.exp (θ • X ω)) ∂μ ≤
+      (d : ℝ) * Real.exp (θ ^ 2 * sigma_k_sq * (Real.exp (θ * R) - θ * R - 1) / R ^ 2) := by
+  sorry
+
 /-- **Matrix Laplace master bound** for Bernstein (Tropp 2012, §6.1).
 
 For any `θ > 0`, the probability that the operator norm of the sum
@@ -102,12 +178,15 @@ where `g(u) = (eᵘ − u − 1) / u²` is Tropp's scalar MGF kernel.
 This form absorbs the `θ²` factor that makes the optimisation
 yield the correct Bernstein exponent.
 
-This combines: (i) matrix Markov inequality on `tr exp(±θ S)`,
-(ii) Lieb–Tropp subadditivity, (iii) per-summand CGF bound,
-(iv) `tr exp(cV) ≤ d · exp(c · ‖V‖)` for PSD `V`.
+This combines: (i) matrix Markov inequality on `tr exp(±θ S)`
+(via `bernstein_markov_tr_exp`), (ii) MGF subadditivity via
+Golden-Thompson and independence (`bernstein_mgf_subadditivity`),
+(iii) per-summand CGF bound (`bernstein_cgf_per_summand`), and
+(iv) aggregating per-summand bounds via `h_var_bound`.
 
-**Status: sorry.** Requires Lieb concavity (roadmap item 1) and
-matrix-MGF infrastructure (roadmap item 4). -/
+**Status: sorry.** Each atomic sorry is localised in the three
+sub-lemmas above. The composition step requires additional arithmetic
+on ENNReal.ofReal that is currently unresolved. -/
 private lemma bernstein_master_bound
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω}
     [IsProbabilityMeasure μ]
@@ -126,6 +205,24 @@ private lemma bernstein_master_bound
       ENNReal.ofReal
         (2 * ↑d * Real.exp
           (-θ * t + sigma_sq * (Real.exp (θ * R) - θ * R - 1) / R ^ 2)) := by
+  -- Step 1 (bernstein_markov_tr_exp): bound P(‖S‖ ≥ t) via matrix Markov.
+  -- P(‖S‖ ≥ t) ≤ exp(−θt) · E[tr exp(θS)]
+  -- We apply this for both θ and −θ (upper and lower tail), then take the sum.
+  -- For the upper tail only, the bound is:
+  have hStep1 : μ {ω | ‖(Finset.univ : Finset (Fin n)).sum (fun k => X k ω)‖ ≥ t} ≤
+      ENNReal.ofReal (Real.exp (-θ * t) *
+        ∫ ω, Matrix.trace (NormedSpace.exp (θ • (Finset.univ : Finset (Fin n)).sum (fun k => X k ω))) ∂μ) :=
+    bernstein_markov_tr_exp X h_sa t ht θ hθ
+  -- Step 2 (bernstein_mgf_subadditivity): bound the trace-MGF of the sum.
+  -- E[tr exp(θS)] ≤ d · Πₖ E[tr exp(θ Xₖ)]
+  have hStep2 : ∫ ω, Matrix.trace (NormedSpace.exp (θ • (Finset.univ : Finset (Fin n)).sum (fun k => X k ω))) ∂μ ≤
+      (d : ℝ) * ∏ k : Fin n, ∫ ω, Matrix.trace (NormedSpace.exp (θ • X k ω)) ∂μ :=
+    bernstein_mgf_subadditivity X h_indep h_sa h_zero_mean θ hθ
+  -- Step 3 (bernstein_cgf_per_summand × n): bound each per-summand trace-MGF.
+  -- E[tr exp(θ Xₖ)] ≤ d · exp(θ² σₖ² (exp(θR) − θR − 1)/R²) for each k.
+  -- Remaining gap: aggregating the product Πₖ(d · exp(...)) using h_var_bound
+  -- to get d · exp(σ² (exp(θR) − θR − 1)/R²), then the factor of 2 from ±θ.
+  -- This arithmetic composition step is beyond current tactic automation.
   sorry
 
 /-
@@ -177,13 +274,59 @@ private lemma bernstein_scalar_opt
 
 /-! ### Hoeffding private helpers -/
 
+/-- **Sub-lemma — Hoeffding trace-MGF bound (Path B steps 2–3 combined).**
+
+Combines MGF subadditivity (`bernstein_mgf_subadditivity`) with the
+Hoeffding-form per-summand CGF bound. For independent zero-mean
+self-adjoint summands `X_k` with `‖X_k²‖ ≤ ‖A_k²‖` a.s. and
+variance proxy `σ² ≥ ‖∑ A_k²‖`:
+  `E[tr exp(θ Σ X_k)] ≤ 2 d · exp(θ² σ² / 2)`.
+
+The factor of 2 accounts for both tails of the operator norm
+(upper and lower eigenvalue) via the union bound.
+
+**Status: sorry.** Same infrastructure requirements as Bernstein
+(Lieb concavity, Golden-Thompson, matrix CGF bound). Internally
+uses `bernstein_mgf_subadditivity` for the independence MGF split. -/
+private lemma hoeffding_trace_mgf_bound
+    {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω}
+    [IsProbabilityMeasure μ]
+    (n : ℕ) (X : Fin n → Ω → Matrix (Fin d) (Fin d) ℝ)
+    (A : Fin n → Matrix (Fin d) (Fin d) ℝ)
+    (sigma_sq : ℝ) (hsigma_sq_nonneg : 0 ≤ sigma_sq)
+    (h_indep : ∀ i j, i ≠ j → ProbabilityTheory.IndepFun (X i) (X j) μ)
+    (h_sa : ∀ k, ∀ᵐ ω ∂μ, (X k ω).IsHermitian)
+    (h_A_sa : ∀ k, (A k).IsHermitian)
+    (h_zero_mean : ∀ k i j, ∫ ω, (X k ω) i j ∂μ = 0)
+    (h_sq_bound : ∀ k, ∀ᵐ ω ∂μ,
+      ‖(X k ω) * (X k ω)‖ ≤ ‖(A k) * (A k)‖)
+    (h_var_bound : ‖(Finset.univ : Finset (Fin n)).sum
+        (fun k => (A k) * (A k))‖ ≤ sigma_sq)
+    (θ : ℝ) (hθ : 0 < θ) :
+    ∫ ω, Matrix.trace (NormedSpace.exp
+        (θ • (Finset.univ : Finset (Fin n)).sum (fun k => X k ω))) ∂μ ≤
+      2 * ↑d * Real.exp (θ ^ 2 * sigma_sq / 2) := by
+  -- Internally: bernstein_mgf_subadditivity gives
+  --   E[tr exp(θS)] ≤ d · Π E[tr exp(θXₖ)].
+  -- Then per-summand Hoeffding CGF bound (Loewner order) gives
+  --   E[tr exp(θXₖ)] ≤ exp(θ² ‖Aₖ²‖ / 2),
+  -- and the product telescopes to exp(θ² ‖Σ Aₖ²‖ / 2) ≤ exp(θ²σ²/2)
+  -- via trace-monotonicity on the Loewner order.
+  -- The factor of 2 accounts for both tails (±θ symmetry).
+  sorry
+
 /-- **Matrix Laplace master bound** for Hoeffding.
 
 For any `θ > 0`, the probability is bounded by
 `2 d · exp(−θ t + θ² σ² / 2)`. This uses the Hoeffding-type
 per-summand CGF bound.
 
-**Status: sorry.** Same infrastructure requirements as Bernstein. -/
+**Status: proved** modulo `bernstein_markov_tr_exp` (matrix Markov,
+Path B step 1) and `hoeffding_trace_mgf_bound` (MGF subadditivity +
+per-summand Hoeffding CGF, Path B steps 2–3). The composition
+multiplies the Markov bound `exp(−θt) · E[tr exp(θS)]` with the MGF
+bound `E[tr exp(θS)] ≤ 2d · exp(θ²σ²/2)` and simplifies via
+`Real.exp_add`. -/
 private lemma hoeffding_master_bound
     {Ω : Type*} {mΩ : MeasurableSpace Ω} {μ : Measure Ω}
     [IsProbabilityMeasure μ]
@@ -203,7 +346,28 @@ private lemma hoeffding_master_bound
     μ {ω | ‖(Finset.univ : Finset (Fin n)).sum (fun k => X k ω)‖ ≥ t} ≤
       ENNReal.ofReal
         (2 * ↑d * Real.exp (-θ * t + θ ^ 2 * sigma_sq / 2)) := by
-  sorry
+  -- Step 1 (bernstein_markov_tr_exp): matrix Markov bound.
+  -- P(‖S‖ ≥ t) ≤ exp(−θt) · E[tr exp(θS)]
+  have hStep1 := bernstein_markov_tr_exp X h_sa t ht θ hθ
+  -- Step 2+3 (hoeffding_trace_mgf_bound): MGF subadditivity + per-summand Hoeffding CGF.
+  -- E[tr exp(θS)] ≤ 2 d · exp(θ² σ² / 2)
+  have hStep23 := hoeffding_trace_mgf_bound n X A sigma_sq hsigma_sq_nonneg
+    h_indep h_sa h_A_sa h_zero_mean h_sq_bound h_var_bound θ hθ
+  -- Compose: P ≤ exp(−θt) · E[tr exp(θS)] ≤ exp(−θt) · 2d · exp(θ²σ²/2)
+  --         = 2d · exp(−θt + θ²σ²/2)
+  apply le_trans hStep1
+  apply ENNReal.ofReal_le_ofReal
+  have h_exp_pos : (0 : ℝ) ≤ Real.exp (-θ * t) := le_of_lt (Real.exp_pos _)
+  calc Real.exp (-θ * t) *
+        ∫ ω, Matrix.trace (NormedSpace.exp
+          (θ • (Finset.univ : Finset (Fin n)).sum (fun k => X k ω))) ∂μ
+      ≤ Real.exp (-θ * t) * (2 * ↑d * Real.exp (θ ^ 2 * sigma_sq / 2)) := by
+          exact mul_le_mul_of_nonneg_left hStep23 h_exp_pos
+    _ = 2 * ↑d * Real.exp (-θ * t + θ ^ 2 * sigma_sq / 2) := by
+          rw [show Real.exp (-θ * t) * (2 * ↑d * Real.exp (θ ^ 2 * sigma_sq / 2))
+              = 2 * ↑d * (Real.exp (-θ * t) * Real.exp (θ ^ 2 * sigma_sq / 2))
+              from by ring]
+          rw [← Real.exp_add]
 
 /-
 **Scalar optimisation** for the Hoeffding bound.
