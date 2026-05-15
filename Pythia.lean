@@ -267,6 +267,7 @@ import Pythia.Finance.ImpermanentLoss
 import Pythia.Finance.InformationRatio
 import Pythia.Finance.JensenAlpha
 import Pythia.Finance.Kelly
+import Pythia.Finance.KellyOptimal
 import Pythia.Finance.LeverageDecay
 import Pythia.Finance.LogReturnInequality
 import Pythia.Finance.MacaulayDuration
