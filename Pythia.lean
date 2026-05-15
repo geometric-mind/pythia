@@ -263,6 +263,7 @@ import Pythia.Finance.HFT.Checksum
 import Pythia.Finance.HFT.FastMath
 import Pythia.Finance.HFT.FixedPoint
 import Pythia.Finance.HFT.ChecksumSpec
+import Pythia.Finance.HFT.FairValueEstimator
 import Pythia.Finance.HFT.FixedPointStrong
 import Pythia.Finance.HFT.LatencyBound
 import Pythia.Finance.HFT.MarketMaking
