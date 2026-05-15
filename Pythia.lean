@@ -243,6 +243,7 @@ import Pythia.Finance.CompoundInterest
 import Pythia.Finance.ConvexityDuration
 import Pythia.Finance.ContinuousDividendForward
 import Pythia.Finance.CreditSpread
+import Pythia.Finance.CurrencyHedging
 import Pythia.Finance.DividendDiscountModel
 import Pythia.Finance.DiscountFactor
 import Pythia.Finance.EfficientFrontier
@@ -263,6 +264,7 @@ import Pythia.Finance.Kelly
 import Pythia.Finance.LeverageDecay
 import Pythia.Finance.LogReturnInequality
 import Pythia.Finance.MacaulayDuration
+import Pythia.Finance.MarginalRisk
 import Pythia.Finance.MarketImpact
 import Pythia.Finance.MarkowitzFrontier
 import Pythia.Finance.MaxDrawdown
@@ -271,6 +273,7 @@ import Pythia.Finance.MeanVarianceUtility
 import Pythia.Finance.MertonPortfolioInsurance
 import Pythia.Finance.ModiglianiMiller
 import Pythia.Finance.NetPresentValue
+import Pythia.Finance.OptionPayoff
 import Pythia.Finance.OptionTimePremium
 import Pythia.Finance.OrnsteinUhlenbeck
 import Pythia.Finance.Perpetuity
@@ -361,6 +364,7 @@ import Pythia.Numerical.PicardLindelofHelpers
 -- Optimization
 import Pythia.Optimization.BarrierFunction
 import Pythia.Optimization.ConjugateFunction
+import Pythia.Optimization.ConvexCombination
 import Pythia.Optimization.DualityGap
 import Pythia.Optimization.GradientDescentRate
 import Pythia.Optimization.LagrangianDuality
