@@ -99,4 +99,39 @@ theorem crrRiskNeutralProb_zero_rate (Δt u d : ℝ) :
   unfold crrRiskNeutralProb
   simp [zero_mul, Real.exp_zero]
 
+/-- **No-arbitrage lower bound on risk-neutral probability.** Under the
+CRR no-arbitrage condition `d ≤ exp(r·Δt) ≤ u` with `d < u`, the
+risk-neutral up-probability is non-negative:
+    `0 ≤ q = (exp(r·Δt) − d) / (u − d)`.
+
+The no-arbitrage condition `d ≤ exp(r·Δt)` guarantees a non-negative
+numerator; `d < u` guarantees a positive denominator. A negative `q`
+would imply an arbitrage opportunity (the asset's "risk-neutral" up
+move is uncompensated), so this bound is the algebraic shadow of the
+no-arbitrage principle. -/
+@[stat_lemma]
+theorem crrRiskNeutralProb_nonneg (r Δt u d : ℝ)
+    (h_arb_lo : d ≤ Real.exp (r * Δt)) (h_ud : d < u) :
+    0 ≤ crrRiskNeutralProb r Δt u d := by
+  unfold crrRiskNeutralProb
+  apply div_nonneg
+  · linarith
+  · linarith
+
+/-- **No-arbitrage upper bound on risk-neutral probability.** Under the
+CRR no-arbitrage condition `exp(r·Δt) ≤ u`, the risk-neutral up-
+probability is at most one:
+    `q = (exp(r·Δt) − d) / (u − d) ≤ 1`.
+
+Combined with `crrRiskNeutralProb_nonneg`, this establishes the
+foundational `q ∈ [0, 1]` range used in every CRR-tree backward
+induction. -/
+@[stat_lemma]
+theorem crrRiskNeutralProb_le_one (r Δt u d : ℝ)
+    (h_arb_hi : Real.exp (r * Δt) ≤ u) (h_ud : d < u) :
+    crrRiskNeutralProb r Δt u d ≤ 1 := by
+  unfold crrRiskNeutralProb
+  rw [div_le_one (by linarith : (0 : ℝ) < u - d)]
+  linarith
+
 end Pythia.Finance
