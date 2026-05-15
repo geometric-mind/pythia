@@ -226,6 +226,7 @@ import Pythia.Distributed
 import Pythia.Finance.All
 import Pythia.Finance.Credit.CreditDefaultSwap
 import Pythia.Finance.Credit.CreditSpread
+import Pythia.Finance.Credit.CVAProperties
 import Pythia.Finance.Credit.HazardRate
 import Pythia.Finance.Credit.MertonCredit
 import Pythia.Finance.CreditRisk
