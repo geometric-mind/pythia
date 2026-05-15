@@ -252,6 +252,7 @@ import Pythia.Finance.FixedIncome.Perpetuity
 import Pythia.Finance.FixedIncome.VasicekBondPrice
 import Pythia.Finance.FixedIncome.VasicekShortRate
 import Pythia.Finance.FixedIncome.YieldFromPrice
+import Pythia.Finance.FixedIncome.YieldCurveConstraints
 import Pythia.Finance.Fundamentals
 import Pythia.Finance.Fundamentals.AutocorrelationReturn
 import Pythia.Finance.Fundamentals.CointegrationResidual
