@@ -251,6 +251,7 @@ import Pythia.Finance.FixedIncome.ForwardRateParity
 import Pythia.Finance.FixedIncome.FxForward
 import Pythia.Finance.FixedIncome.MacaulayDuration
 import Pythia.Finance.FixedIncome.Perpetuity
+import Pythia.Finance.FixedIncome.SwapPricing
 import Pythia.Finance.FixedIncome.VasicekBondPrice
 import Pythia.Finance.FixedIncome.VasicekShortRate
 import Pythia.Finance.FixedIncome.YieldFromPrice
