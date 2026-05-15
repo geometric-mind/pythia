@@ -262,6 +262,7 @@ import Pythia.Finance.Fundamentals.NetPresentValue
 import Pythia.Finance.HFT.Checksum
 import Pythia.Finance.HFT.FastMath
 import Pythia.Finance.HFT.FixedPoint
+import Pythia.Finance.HFT.AuctionMechanism
 import Pythia.Finance.HFT.ChecksumSpec
 import Pythia.Finance.HFT.FairValueEstimator
 import Pythia.Finance.HFT.FixedPointStrong
