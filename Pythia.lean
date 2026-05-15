@@ -260,6 +260,7 @@ import Pythia.Finance.Kelly
 import Pythia.Finance.LeverageDecay
 import Pythia.Finance.LogReturnInequality
 import Pythia.Finance.MacaulayDuration
+import Pythia.Finance.MarketImpact
 import Pythia.Finance.MarkowitzFrontier
 import Pythia.Finance.MaxDrawdown
 import Pythia.Finance.MeanVarianceUtility
@@ -269,6 +270,7 @@ import Pythia.Finance.NetPresentValue
 import Pythia.Finance.OptionTimePremium
 import Pythia.Finance.OrnsteinUhlenbeck
 import Pythia.Finance.Perpetuity
+import Pythia.Finance.PortfolioRebalancing
 import Pythia.Finance.PortfolioVariance
 import Pythia.Finance.PutCallParity
 import Pythia.Finance.PutCallParityDividend
@@ -350,6 +352,7 @@ import Pythia.Numerical.InnerProductError
 import Pythia.Numerical.NewtonQuadraticIterPos
 import Pythia.Numerical.PicardLindelofHelpers
 -- Optimization
+import Pythia.Optimization.ConjugateFunction
 import Pythia.Optimization.GradientDescentRate
 import Pythia.Optimization.LagrangianDuality
 import Pythia.Optimization.ProximalOperator
