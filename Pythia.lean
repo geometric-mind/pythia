@@ -239,6 +239,7 @@ import Pythia.Finance.CointegrationResidual
 import Pythia.Finance.CompoundInterest
 import Pythia.Finance.ConvexityDuration
 import Pythia.Finance.ContinuousDividendForward
+import Pythia.Finance.DividendDiscountModel
 import Pythia.Finance.DiscountFactor
 import Pythia.Finance.ExpectedShortfall
 import Pythia.Finance.ForwardPrice
@@ -259,6 +260,7 @@ import Pythia.Finance.LogReturnInequality
 import Pythia.Finance.MacaulayDuration
 import Pythia.Finance.MarkowitzFrontier
 import Pythia.Finance.MaxDrawdown
+import Pythia.Finance.MeanVarianceUtility
 import Pythia.Finance.MertonPortfolioInsurance
 import Pythia.Finance.ModiglianiMiller
 import Pythia.Finance.NetPresentValue
