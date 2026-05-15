@@ -1,0 +1,16 @@
+[package]
+name = "pythia-hft-fixedpoint"
+version = "0.1.0"
+edition = "2021"
+description = "Fixed-point arithmetic with formally verified error bounds. Lean spec: Pythia.Finance.HFT.FixedPoint"
+license = "Apache-2.0"
+
+[dependencies]
+
+[dev-dependencies]
+proptest = "1"
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "fixedpoint_bench"
+harness = false
