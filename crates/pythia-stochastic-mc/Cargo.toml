@@ -1,0 +1,9 @@
+[package]
+name = "pythia-stochastic-mc"
+version = "0.1.0"
+edition = "2021"
+description = "Verified Monte Carlo pricing bounds: SE convergence, CI width, variance reduction. Lean spec: Pythia.Finance.Stochastic.MonteCarloBounds"
+license = "Apache-2.0"
+
+[dev-dependencies]
+proptest = "1"
