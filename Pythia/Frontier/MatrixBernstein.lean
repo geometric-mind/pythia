@@ -380,10 +380,13 @@ private lemma hoeffding_scalar_opt
     (t sigma_sq : ℝ) (ht : 0 < t) (hσ : 0 ≤ sigma_sq) :
     ∃ θ : ℝ, 0 < θ ∧
       -θ * t + θ ^ 2 * sigma_sq / 2 ≤
-        -(t ^ 2) / (8 * sigma_sq) := by
-  by_cases h : sigma_sq = 0;
-  · exact ⟨ 1, by norm_num, by norm_num [ h ] ; nlinarith ⟩;
-  · exact ⟨ t / ( 4 * sigma_sq ), by positivity, by nlinarith [ mul_div_cancel₀ t ( by positivity : ( 4 * sigma_sq ) ≠ 0 ), mul_div_cancel₀ ( -t ^ 2 ) ( by positivity : ( 8 * sigma_sq ) ≠ 0 ), mul_self_pos.2 h ] ⟩
+        -(t ^ 2) / (2 * sigma_sq) := by
+  by_cases h : sigma_sq = 0
+  · exact ⟨1, by norm_num, by simp [h]; nlinarith⟩
+  · refine ⟨t / sigma_sq, by positivity, ?_⟩
+    have hσ' : 0 < sigma_sq := lt_of_le_of_ne hσ (Ne.symm h)
+    field_simp
+    nlinarith [sq_nonneg t, sq_nonneg sigma_sq, mul_pos ht hσ']
 
 /-! ### Chernoff private helpers -/
 
@@ -536,7 +539,7 @@ theorem matrixHoeffding_self_adjoint
     (t : ℝ) (ht : 0 < t) :
     μ {ω | ‖(Finset.univ : Finset (Fin n)).sum (fun k => X k ω)‖ ≥ t} ≤
       ENNReal.ofReal
-        (2 * ↑d * Real.exp (-(t ^ 2) / (8 * sigma_sq))) := by
+        (2 * ↑d * Real.exp (-(t ^ 2) / (2 * sigma_sq))) := by
   obtain ⟨θ, hθ, hopt⟩ := hoeffding_scalar_opt t sigma_sq ht hsigma_sq_nonneg
   exact le_trans
     (hoeffding_master_bound n X A sigma_sq hsigma_sq_nonneg
