@@ -385,5 +385,6 @@ import Pythia.Stochastic.ItoIsometryFiniteDim
 -- Security (Cedar policy Lean shadows)
 import Pythia.Security.EnvAllowlistSpec
 import Pythia.Security.HaltReasonSpec
+import Pythia.Security.TransformationClassSpec
 -- Thermodynamics
 import Pythia.Thermodynamics.CarnotEfficiencyUpperBound
