@@ -245,6 +245,7 @@ import Pythia.Finance.ForwardPrice
 import Pythia.Finance.ForwardRateParity
 import Pythia.Finance.FxForward
 import Pythia.Finance.GARCHUpdate
+import Pythia.Finance.GarmanKlassVolatility
 import Pythia.Finance.GeometricBrownianMotion
 import Pythia.Finance.GordonGrowth
 import Pythia.Finance.HedgeRatioMinVar
@@ -253,8 +254,12 @@ import Pythia.Finance.ImpermanentLoss
 import Pythia.Finance.InformationRatio
 import Pythia.Finance.JensenAlpha
 import Pythia.Finance.Kelly
+import Pythia.Finance.LeverageDecay
+import Pythia.Finance.LogReturnInequality
 import Pythia.Finance.MacaulayDuration
 import Pythia.Finance.MarkowitzFrontier
+import Pythia.Finance.MaxDrawdown
+import Pythia.Finance.MertonPortfolioInsurance
 import Pythia.Finance.ModiglianiMiller
 import Pythia.Finance.NetPresentValue
 import Pythia.Finance.OrnsteinUhlenbeck
@@ -275,3 +280,76 @@ import Pythia.Finance.VasicekShortRate
 import Pythia.Finance.VolatilityScaling
 import Pythia.Finance.YieldFromPrice
 import Pythia.Finance.Z3AuxiliaryDemo
+-- Actuarial
+import Pythia.Actuarial.Test
+-- Biology / epidemiology
+import Pythia.Bio.MichaelisMentenSaturation
+import Pythia.Bio.Population
+-- Control theory
+import Pythia.Control.Lyapunov
+-- Economics
+import Pythia.Economics.CAPM
+import Pythia.Economics.CRRA
+import Pythia.Economics.CobbDouglas
+import Pythia.Economics.RiskNeutralCall
+import Pythia.Economics.Walras
+-- Engineering
+import Pythia.Engineering.PowerDissipation
+import Pythia.Engineering.RCTimeConstant
+import Pythia.Engineering.SignalEnergy
+-- Frontier: biology
+import Pythia.Frontier.Bio.SIRThreshold
+import Pythia.Frontier.Bio.WrightFisher
+-- Frontier: chemistry
+import Pythia.Frontier.Chemistry.ClausiusClapeyron
+import Pythia.Frontier.Chemistry.Eyring
+import Pythia.Frontier.Chemistry.VantHoff
+-- Frontier: matrix analysis
+import Pythia.Frontier.GoldenThompsonCommutative
+import Pythia.Frontier.LogSumExp
+import Pythia.Frontier.PeierlsBogoliubov
+import Pythia.Frontier.TraceInequalities
+-- Frontier: networking
+import Pythia.Frontier.Networking.Environment
+import Pythia.Frontier.Networking.ExtendedStateMachine
+import Pythia.Frontier.Networking.KernelFidelity
+import Pythia.Frontier.Networking.MultiFlow
+import Pythia.Frontier.Networking.OnsetTheoremTrace
+import Pythia.Frontier.Networking.PatchedFilter
+-- Frontier: neuroscience
+import Pythia.Frontier.Neuroscience.CreditAssignment.DistinguishabilityMatrix
+import Pythia.Frontier.Neuroscience.CreditAssignment.MetaAnneal
+-- Game theory
+import Pythia.GameTheory.MinimaxTwoStrategyBound
+-- Hardware
+import Pythia.Hardware
+-- Information theory
+import Pythia.InfoTheory.BinaryEntropy
+import Pythia.InfoTheory.HammingDistanceTriangle
+-- Language semantics (Palamedes.Data.Tree excluded: Tree.noConfusion conflicts with Mathlib)
+import Pythia.LanguageSemantics.Palamedes.Support
+-- Mathlib tags
+import Pythia.MathlibTags
+-- Mechanical
+import Pythia.Mechanical.HookeSpring
+-- Mechanism design
+import Pythia.MechanismDesign.Basic
+-- Numerical analysis
+import Pythia.Numerical.ErrorPropagation
+import Pythia.Numerical.FPAssociativity
+import Pythia.Numerical.FPNoiseConvergence
+import Pythia.Numerical.FixedPointArith
+import Pythia.Numerical.GradientAccumulation
+import Pythia.Numerical.InnerProductError
+import Pythia.Numerical.NewtonQuadraticIterPos
+import Pythia.Numerical.PicardLindelofHelpers
+-- Operations research
+import Pythia.OR.LittlesLaw
+-- Optimal transport
+import Pythia.OptimalTransport.WassersteinDistanceNonneg
+-- Quantum
+import Pythia.Quantum.VonNeumannEntropyNonnegTwoState
+-- Stochastic
+import Pythia.Stochastic.ItoIsometryFiniteDim
+-- Thermodynamics
+import Pythia.Thermodynamics.CarnotEfficiencyUpperBound
