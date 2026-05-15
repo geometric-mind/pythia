@@ -1,0 +1,9 @@
+[package]
+name = "pythia-execution-twap"
+version = "0.1.0"
+edition = "2021"
+description = "TWAP execution scheduling with participation-rate bounds. Lean spec: Pythia.Finance.Execution.TWAPSchedule"
+license = "Apache-2.0"
+
+[dev-dependencies]
+proptest = "1"

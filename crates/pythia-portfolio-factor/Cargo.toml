@@ -1,0 +1,9 @@
+[package]
+name = "pythia-portfolio-factor"
+version = "0.1.0"
+edition = "2021"
+description = "Factor risk model with systematic/idiosyncratic decomposition. Lean spec: Pythia.Finance.Portfolio.FactorRiskModel"
+license = "Apache-2.0"
+
+[dev-dependencies]
+proptest = "1"
