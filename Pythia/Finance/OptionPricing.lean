@@ -38,3 +38,4 @@ import Pythia.Finance.BarrierOption
 import Pythia.Finance.AsianOption
 import Pythia.Finance.LookbackOption
 import Pythia.Finance.BlackScholesPDE
+import Pythia.Finance.DeltaHedging
