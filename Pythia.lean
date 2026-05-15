@@ -298,6 +298,7 @@ import Pythia.Finance.ValueAtRisk
 import Pythia.Finance.VasicekBondPrice
 import Pythia.Finance.VasicekShortRate
 import Pythia.Finance.VolatilityScaling
+import Pythia.Finance.VolatilitySmile
 import Pythia.Finance.YieldFromPrice
 import Pythia.Finance.Z3AuxiliaryDemo
 -- Actuarial
