@@ -1,0 +1,9 @@
+[package]
+name = "pythia-options-parity-div"
+version = "0.1.0"
+edition = "2021"
+description = "Put-call parity for dividend-paying underlying. Lean spec: Pythia.Finance.PutCallParityDividend"
+license = "Apache-2.0"
+
+[dev-dependencies]
+proptest = "1"

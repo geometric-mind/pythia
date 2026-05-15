@@ -1,0 +1,9 @@
+[package]
+name = "pythia-options-noarb"
+version = "0.1.0"
+edition = "2021"
+description = "No-arbitrage price bounds for European options. Lean spec: Pythia.Finance.NoArbitrageBounds"
+license = "Apache-2.0"
+
+[dev-dependencies]
+proptest = "1"
