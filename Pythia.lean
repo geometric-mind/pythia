@@ -245,6 +245,7 @@ import Pythia.Finance.FixedIncome.BondPriceYield
 import Pythia.Finance.FixedIncome.BondZeroCoupon
 import Pythia.Finance.FixedIncome.BootstrapYieldCurve
 import Pythia.Finance.FixedIncome.CompoundInterest
+import Pythia.Finance.FixedIncome.CreditCurve
 import Pythia.Finance.FixedIncome.ContinuousDividendForward
 import Pythia.Finance.FixedIncome.ConvexityDuration
 import Pythia.Finance.FixedIncome.DiscountFactor
