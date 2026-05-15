@@ -46,3 +46,4 @@ import Pythia.Finance.RiskReturnTradeoff
 import Pythia.Finance.SharpeBridge
 import Pythia.Finance.MertonPortfolioInsurance
 import Pythia.Finance.PortfolioOptimality
+import Pythia.Finance.KellyOptimal
