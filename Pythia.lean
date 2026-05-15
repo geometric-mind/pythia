@@ -270,6 +270,7 @@ import Pythia.Finance.MarkowitzFrontier
 import Pythia.Finance.MaxDrawdown
 import Pythia.Finance.MovingAverage
 import Pythia.Finance.MeanVarianceUtility
+import Pythia.Finance.MertonCredit
 import Pythia.Finance.MertonPortfolioInsurance
 import Pythia.Finance.ModiglianiMiller
 import Pythia.Finance.NetPresentValue
