@@ -353,6 +353,7 @@ import Pythia.Numerical.PicardLindelofHelpers
 import Pythia.Optimization.GradientDescentRate
 import Pythia.Optimization.LagrangianDuality
 import Pythia.Optimization.ProximalOperator
+import Pythia.Optimization.NewtonStep
 import Pythia.Optimization.StrongConvexity
 -- Operations research
 import Pythia.OR.LittlesLaw
