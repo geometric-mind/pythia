@@ -1,0 +1,9 @@
+[package]
+name = "pythia-fundamentals-dcf"
+version = "0.1.0"
+edition = "2021"
+description = "Verified DCF valuation: PV monotonicity in rate and time, additivity, IRR. Lean spec: Pythia.Finance.Fundamentals.DCFValuation"
+license = "Apache-2.0"
+
+[dev-dependencies]
+proptest = "1"
