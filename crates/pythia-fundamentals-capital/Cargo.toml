@@ -1,0 +1,9 @@
+[package]
+name = "pythia-fundamentals-capital"
+version = "0.1.0"
+edition = "2021"
+description = "Verified capital structure properties: tax shield, WACC, leverage amplification, coverage ratio. Lean spec: Pythia.Finance.Fundamentals.CapitalStructure"
+license = "Apache-2.0"
+
+[dev-dependencies]
+proptest = "1"

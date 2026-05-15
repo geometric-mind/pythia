@@ -1,0 +1,9 @@
+[package]
+name = "pythia-risk-liquidity"
+version = "0.1.0"
+edition = "2021"
+description = "Verified liquidity risk: bid-ask spread cost, LVaR, illiquidity discount. Lean spec: Pythia.Finance.Risk.LiquidityRisk"
+license = "Apache-2.0"
+
+[dev-dependencies]
+proptest = "1"
