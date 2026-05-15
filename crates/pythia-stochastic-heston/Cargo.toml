@@ -1,0 +1,9 @@
+[package]
+name = "pythia-stochastic-heston"
+version = "0.1.0"
+edition = "2021"
+description = "Verified Heston stochastic volatility: Feller condition, mean reversion, vol-of-vol scaling. Lean spec: Pythia.Finance.Stochastic.HestonProperties"
+license = "Apache-2.0"
+
+[dev-dependencies]
+proptest = "1"
