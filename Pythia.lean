@@ -342,6 +342,7 @@ import Pythia.Finance.Portfolio.SharpeRatio
 import Pythia.Finance.Portfolio.SortinoRatio
 import Pythia.Finance.Portfolio.TangencyPortfolio
 import Pythia.Finance.Portfolio.TreynorRatio
+import Pythia.Finance.Portfolio.TransactionCostAnalysis
 import Pythia.Finance.PortfolioTheory
 import Pythia.Finance.Risk.ConvexRiskMeasure
 import Pythia.Finance.Risk.EntropyRisk
