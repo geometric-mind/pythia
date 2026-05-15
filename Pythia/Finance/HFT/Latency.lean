@@ -64,7 +64,8 @@ takes ceil(N/B) rounds. Total overhead = rounds * per_round_overhead. -/
 @[stat_lemma]
 theorem batch_rounds {N B : ℕ} (hB : 0 < B) :
     N ≤ ((N + B - 1) / B) * B := by
-  sorry
+  rw [Nat.mul_comm]; have h1 := Nat.div_add_mod (N + B - 1) B
+  have h2 := Nat.mod_lt (N + B - 1) hB; omega
 
 /-- **Memory access pattern:** sequential access (stride 1) hits the
 cache line every CL/sizeof(T) accesses. Random access misses every time.

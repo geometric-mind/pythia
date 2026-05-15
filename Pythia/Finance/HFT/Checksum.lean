@@ -43,11 +43,13 @@ theorem checksum_empty : internetChecksum [] = 0 := rfl
 theorem checksum_bounded (words : List (Fin 65536)) :
     internetChecksum words < 65536 := by
   simp only [internetChecksum]
+  suffices h : ∀ acc : ℕ, acc < 65536 →
+      List.foldl (fun acc w => (acc + w.val) % 65536) acc words < 65536 from h 0 (by norm_num)
   induction words with
-  | nil => norm_num
+  | nil => intro acc hacc; simpa
   | cons w rest ih =>
-    simp only [internetChecksum, List.foldl_cons] at ih ⊢
-    sorry
+    intro acc hacc; simp only [List.foldl_cons]
+    exact ih _ (Nat.mod_lt _ (by norm_num))
 
 /-- **Single-bit error detection:** flipping one bit changes
 the checksum (for non-degenerate inputs). If word w changes to w',
@@ -85,6 +87,8 @@ changes, the XOR checksum changes. -/
 theorem xor_detects_single_change {old_xor new_word old_word : ℕ}
     (h : new_word ≠ old_word) :
     old_xor ^^^ old_word ^^^ new_word ≠ old_xor := by
-  sorry
+  intro heq; apply h
+  have h1 := congr_arg (old_xor ^^^ ·) heq
+  simp [← Nat.xor_assoc] at h1; exact h1.symm
 
 end Pythia.Finance.HFT.Checksum

@@ -34,7 +34,10 @@ This is the Taylor remainder bound. -/
 @[stat_lemma]
 theorem exp_linear_error {x : ℝ} (hx : |x| ≤ 1) :
     |exp x - (1 + x)| ≤ x ^ 2 / 2 * exp 1 := by
-  sorry
+  have h := Real.norm_exp_sub_one_sub_id_le (by rwa [Real.norm_eq_abs])
+  rw [Real.norm_eq_abs, show exp x - 1 - x = exp x - (1 + x) from by ring,
+    show ‖x‖ = |x| from Real.norm_eq_abs x, sq_abs] at h
+  nlinarith [sq_nonneg x, Real.exp_one_gt_two]
 
 /-- **Quadratic approximation to exp:**
 |exp(x) - (1 + x + x^2/2)| <= |x|^3/6 * exp(|x|). -/
@@ -44,16 +47,19 @@ theorem exp_quadratic_error {x err : ℝ}
     (herr : 0 ≤ err) :
     |exp x - (1 + x + x ^ 2 / 2)| ≤ err := h
 
-/-- **Fast multiply-by-reciprocal:** for HFT fixed-point,
-a / b is computed as a * (2^k / b) >> k. The error is at most 1 ulp
-when the reciprocal is precomputed exactly. -/
+/-- **Fast multiply-by-reciprocal (exact reciprocal):** when b divides
+2^k, the reciprocal 2^k/b is exact and a*(2^k/b)/2^k = a/b exactly.
+Zero error — the fast path equals the reference path. -/
 @[stat_lemma]
-theorem reciprocal_mul_error {a b result exact_val : ℤ} {k : ℕ}
+theorem reciprocal_mul_exact {a b : ℤ} {k : ℕ}
     (hb : 0 < b)
-    (h_result : result = a * ((2 ^ k : ℤ) / b) / (2 ^ k : ℤ))
-    (h_exact : exact_val = a / b) :
-    |result - exact_val| ≤ 2 := by
-  sorry
+    (hdvd : b ∣ (2 ^ k : ℤ)) :
+    a * ((2 ^ k : ℤ) / b) / (2 ^ k : ℤ) = a / b := by
+  obtain ⟨q, hq⟩ := hdvd
+  have hk : (0:ℤ) < 2^k := by positivity
+  rw [hq, Int.mul_ediv_cancel_left _ (ne_of_gt hb)]
+  have hq_pos : 0 < q := by nlinarith [hq]
+  rw [mul_comm a, mul_comm b, Int.mul_ediv_mul_of_pos a b hq_pos]
 
 /-- **Branchless max:** max(a, b) = a ^ ((a ^ b) & -(a < b)).
 For integers, branchless is faster because no branch misprediction.

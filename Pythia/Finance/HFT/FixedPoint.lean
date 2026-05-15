@@ -68,7 +68,22 @@ The error from truncation is at most 1 ulp = 1/2^s. -/
 theorem mul_rescale_error {s : ℕ} (a b : FP s)
     (result_raw : ℤ) (h : result_raw = a.raw * b.raw / (2 ^ s : ℤ)) :
     |(FP.mk result_raw : FP s).toRat - a.toRat * b.toRat| ≤ 1 / (2 ^ s : ℚ) := by
-  sorry
+  subst h; simp only [FP.toRat]
+  have hD : (0:ℚ) < (2:ℚ) ^ s := by positivity
+  have hDne : (2:ℚ)^s ≠ 0 := ne_of_gt hD
+  set n := a.raw * b.raw with hn
+  have hDz : (0:ℤ) < (2:ℤ)^s := by positivity
+  have hdiv := Int.ediv_add_emod n ((2:ℤ)^s)
+  have hmod_nn := Int.emod_nonneg n (ne_of_gt hDz)
+  have hmod_lt := Int.emod_lt_of_pos n hDz
+  have hle : (n / (2:ℤ)^s) * (2:ℤ)^s ≤ n := by nlinarith
+  have cast_eq : (↑a.raw : ℚ) * ↑b.raw = (↑n : ℚ) := by simp [hn, Int.cast_mul]
+  have hfloor : (↑(n / (2:ℤ)^s) : ℚ) * (2:ℚ)^s ≤ (↑n : ℚ) := by exact_mod_cast hle
+  have hceil : (↑n : ℚ) < (↑(n / (2:ℤ)^s) + 1) * (2:ℚ)^s := by
+    push_cast; exact_mod_cast (show n < (n / (2:ℤ)^s + 1) * (2:ℤ)^s by nlinarith)
+  push_cast; rw [div_mul_div_comm, cast_eq, abs_le]; constructor
+  · rw [neg_le_sub_iff_le_add]; field_simp; nlinarith
+  · rw [sub_le_iff_le_add]; field_simp; nlinarith
 
 /-- **Round-trip conversion is exact:** converting an integer to
 fixed-point and back gives the original integer. -/
