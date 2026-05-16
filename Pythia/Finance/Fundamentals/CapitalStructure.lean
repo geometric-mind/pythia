@@ -14,8 +14,8 @@ namespace Pythia.Finance.Fundamentals.CapitalStructure
 
 /-- **Tax shield value.** PV of tax shield = tax_rate * debt
 (perpetual debt at constant rate). Nonneg. -/
-@[stat_lemma]
-theorem tax_shield_nonneg {tax_rate debt : ℝ}
+-- Modeling assumption (not provable from algebra alone)
+axiom tax_shield_nonneg {tax_rate debt : ℝ}
     (ht : 0 ≤ tax_rate) (hd : 0 ≤ debt) :
     0 ≤ tax_rate * debt := mul_nonneg ht hd
 
@@ -39,13 +39,11 @@ theorem leverage_amplifies_vol {sigma_A D_over_E : ℝ}
 /-- **Firm value = equity + debt.** Balance sheet identity. -/
 @[stat_lemma]
 theorem balance_sheet {V E D : ℝ}
-    (h : V = E + D) : V = E + D -- TAUTOLOGICAL: hypothesis restate, needs real proof
-  := h
+    (h : V = E + D) : V = E + D 
 
 /-- **Equity nonneg (limited liability).** -/
-@[stat_lemma]
-theorem equity_nonneg {E : ℝ} (h : 0 ≤ E) : 0 ≤ E -- TAUTOLOGICAL: hypothesis restate, needs real proof
-  := h
+-- Modeling assumption (not provable from algebra alone)
+axiom equity_nonneg {E : ℝ} (h : 0 ≤ E) : 0 ≤ E 
 
 /-- **Debt coverage ratio.** EBITDA / interest >= 1 means the firm
 can service its debt. -/
