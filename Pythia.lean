@@ -326,6 +326,7 @@ import Pythia.Finance.Portfolio.InformationRatio
 import Pythia.Finance.Portfolio.JensenAlpha
 import Pythia.Finance.Portfolio.Kelly
 import Pythia.Finance.Portfolio.KellyOptimal
+import Pythia.Finance.Portfolio.LeverageConstraints
 import Pythia.Finance.Portfolio.MarginalRisk
 import Pythia.Finance.Portfolio.MarkowitzFrontier
 import Pythia.Finance.Portfolio.MeanVarianceUtility
