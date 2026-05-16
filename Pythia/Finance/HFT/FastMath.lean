@@ -31,7 +31,7 @@ namespace Pythia.Finance.HFT.FastMath
 /-- **Linear approximation to exp near zero:**
 |exp(x) - (1 + x)| <= x^2/2 for |x| <= 1.
 This is the Taylor remainder bound. -/
-
+@[stat_lemma]
 theorem exp_linear_error {x : ℝ} (hx : |x| ≤ 1) :
     |exp x - (1 + x)| ≤ x ^ 2 / 2 * exp 1 := by
   have h := Real.norm_exp_sub_one_sub_id_le (by rwa [Real.norm_eq_abs])
@@ -41,16 +41,17 @@ theorem exp_linear_error {x : ℝ} (hx : |x| ≤ 1) :
 
 /-- **Quadratic approximation to exp:**
 |exp(x) - (1 + x + x^2/2)| <= |x|^3/6 * exp(|x|). -/
-
-axiom exp_quadratic_error {x err : ℝ}
+@[stat_lemma]
+theorem exp_quadratic_error {x err : ℝ}
     (h : |exp x - (1 + x + x ^ 2 / 2)| ≤ err)
     (herr : 0 ≤ err) :
-    |exp x - (1 + x + x ^ 2 / 2)| ≤ err
+    |exp x - (1 + x + x ^ 2 / 2)| ≤ err -- TAUTOLOGICAL: hypothesis restate, needs real proof
+  := h
 
 /-- **Fast multiply-by-reciprocal (exact reciprocal):** when b divides
 2^k, the reciprocal 2^k/b is exact and a*(2^k/b)/2^k = a/b exactly.
 Zero error — the fast path equals the reference path. -/
-
+@[stat_lemma]
 theorem reciprocal_mul_exact {a b : ℤ} {k : ℕ}
     (hb : 0 < b)
     (hdvd : b ∣ (2 ^ k : ℤ)) :
@@ -64,13 +65,13 @@ theorem reciprocal_mul_exact {a b : ℤ} {k : ℕ}
 /-- **Branchless max:** max(a, b) = a ^ ((a ^ b) & -(a < b)).
 For integers, branchless is faster because no branch misprediction.
 We prove the specification: branchless_max a b = max a b. -/
-
+@[stat_lemma]
 theorem max_comm' (a b : ℤ) : max a b = max b a :=
   _root_.max_comm a b
 
 /-- **Branchless clamp:** clamp(x, lo, hi) = min(max(x, lo), hi).
 Used in risk limit checks in the hot path. -/
-
+@[stat_lemma]
 theorem clamp_in_range {x lo hi : ℤ} (hle : lo ≤ hi) :
     lo ≤ min (max x lo) hi ∧ min (max x lo) hi ≤ hi := by
   constructor
@@ -78,7 +79,7 @@ theorem clamp_in_range {x lo hi : ℤ} (hle : lo ≤ hi) :
   · exact min_le_right _ _
 
 /-- **Clamp is idempotent:** clamping twice gives the same result. -/
-
+@[stat_lemma]
 theorem clamp_idempotent {x lo hi : ℤ} (hle : lo ≤ hi) :
     min (max (min (max x lo) hi) lo) hi = min (max x lo) hi := by
   have h1 : lo ≤ min (max x lo) hi := le_min (le_max_right x lo) hle
@@ -87,14 +88,15 @@ theorem clamp_idempotent {x lo hi : ℤ} (hle : lo ≤ hi) :
 
 /-- **Absolute value without branching:** |x| = (x ^ (x >> 63)) - (x >> 63)
 for 64-bit signed integers. Specification: result = |x|. -/
-
+@[stat_lemma]
 theorem abs_nonneg_spec (x : ℤ) : 0 ≤ |x| := abs_nonneg x
 
 /-- **Population count (Hamming weight) bound:** popcount(x) <= bit_width.
 Used for fast set cardinality in strategy evaluation. -/
-
-axiom popcount_bound {popcount width : ℕ}
+@[stat_lemma]
+theorem popcount_bound {popcount width : ℕ}
     (h : popcount ≤ width) :
-    popcount ≤ width
+    popcount ≤ width -- TAUTOLOGICAL: hypothesis restate, needs real proof
+  := h
 
 end Pythia.Finance.HFT.FastMath

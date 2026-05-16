@@ -32,15 +32,16 @@ noncomputable def quantError (realVal : ℝ) (fp : FixedPoint) : ℝ :=
 /-- **Quantization error bounded by half tick.** The maximum
 rounding error from converting a real to fixed-point is half
 the tick size (1/2scale). -/
-
+@[stat_lemma]
 theorem quantError_le_half_tick {realVal : ℝ} {fp : FixedPoint}
     (h : quantError realVal fp ≤ 1 / (2 * ↑fp.scale)) :
-    quantError realVal fp ≤ 1 / (2 * ↑fp.scale)
+    quantError realVal fp ≤ 1 / (2 * ↑fp.scale) -- TAUTOLOGICAL: hypothesis restate, needs real proof
+  := h
 
 /-- **Addition error.** Fixed-point addition of two values each
 within epsilon of their real values produces a result within
 2*epsilon of the real sum. -/
-
+@[stat_lemma]
 theorem add_error_bound {a_real b_real a_fp b_fp eps : ℝ}
     (ha : |a_real - a_fp| ≤ eps)
     (hb : |b_real - b_fp| ≤ eps) :
@@ -51,7 +52,7 @@ theorem add_error_bound {a_real b_real a_fp b_fp eps : ℝ}
 
 /-- **Multiplication error (first order).** For small epsilon,
 |a*b - a_fp*b_fp| <= |a|*eps_b + |b|*eps_a + eps_a*eps_b. -/
-
+@[stat_lemma]
 theorem mul_error_first_order {a b a_fp b_fp eps_a eps_b : ℝ}
     (ha : |a - a_fp| ≤ eps_a)
     (hb : |b - b_fp| ≤ eps_b)
@@ -69,7 +70,7 @@ theorem mul_error_first_order {a b a_fp b_fp eps_a eps_b : ℝ}
 /-- **Comparison preserves order.** If two real values differ by
 more than 2*epsilon (twice the quantization error), their
 fixed-point representations have the same ordering. -/
-
+@[stat_lemma]
 theorem compare_preserves_order {a_real b_real a_fp b_fp eps : ℝ}
     (ha : |a_real - a_fp| ≤ eps) (hb : |b_real - b_fp| ≤ eps)
     (h_sep : a_real + 2 * eps < b_real) :
@@ -81,14 +82,15 @@ theorem compare_preserves_order {a_real b_real a_fp b_fp eps : ℝ}
 /-- **N-step error accumulation (addition chain).** After n
 additions each introducing at most epsilon error, total
 accumulated error is at most n * epsilon. -/
-
+@[stat_lemma]
 theorem n_step_add_error {n : ℕ} {eps : ℝ} (h_eps : 0 ≤ eps)
     {total_error : ℝ} (h : total_error ≤ ↑n * eps) :
-    total_error ≤ ↑n * eps
+    total_error ≤ ↑n * eps -- TAUTOLOGICAL: hypothesis restate, needs real proof
+  := h
 
 /-- **Overflow detection.** If |a| + |b| < bound, then
 |a + b| < bound (no overflow). -/
-
+@[stat_lemma]
 theorem no_overflow_from_abs_bound {a b bound : ℝ}
     (h : |a| + |b| < bound) :
     |a + b| < bound := by

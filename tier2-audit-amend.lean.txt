@@ -1,0 +1,217 @@
+-- ============================================================================
+-- TIER 2 AUDIT-AMEND FILE-ARTIFACT (ATH-1257)
+-- ============================================================================
+-- Hand-off target: Azure-VM-research, on `research/trotter-l1-l2-l3-drafts`
+-- branch, post matExp_lim_product step 1 close.
+--
+-- Paste-target: append to Pythia/AxiomAudit.lean as part of the Trotter PR.
+-- No git-push race: this file is a paste-ready artifact, not a parallel
+-- branch edit (per `feedback_parallel_subagents_with_review` and the v3
+-- collision-risk rule on Trotter-branch authorship).
+--
+-- Coverage: 55 terminal-leaf-paper-defense headlines (TrotterProduct +
+-- MatrixLieb + MatrixBernstein/Full + WaldIdentity + TraceInequalities +
+-- PeierlsBogoliubov + GoldenThompsonCommutative) plus 28 tier-tag-pending
+-- additions (LogSumExp + Lundberg + MeasureTheory.PathMeasureRN) surfaced
+-- per asabi 2026-05-14 routing for orchestrator classification.
+--
+-- Trusted-triple expected on closed theorems: {propext, Classical.choice,
+-- Quot.sound}. matExp_lim_product currently sorry'd; entry becomes trusted
+-- once Azure-VM closes step 1.
+-- ============================================================================
+
+
+-- ===== Imports to add at the head of Pythia/AxiomAudit.lean ================
+
+import Pythia.Frontier.TrotterProduct
+import Pythia.Frontier.MatrixLieb
+import Pythia.Frontier.MatrixBernstein
+import Pythia.Frontier.MatrixBernsteinFull
+import Pythia.Frontier.WaldIdentity
+import Pythia.Frontier.TraceInequalities
+import Pythia.Frontier.PeierlsBogoliubov
+import Pythia.Frontier.GoldenThompsonCommutative
+-- Tier-2-candidate (paper-claim-defense) additions — orchestrator to
+-- classify Tier 2 vs Tier 3 customer-bundle fold at hand-off:
+import Pythia.Frontier.LogSumExp
+import Pythia.Frontier.Lundberg
+import Pythia.Frontier.MeasureTheory.PathMeasureRN
+
+
+-- ===== Body to append before `end Pythia.AxiomAudit` ======================
+
+/-! ## Tier 2 — Matrix concentration + Trotter product cluster
+
+Terminal-leaf paper-claim-defense headlines.  Bundles with the Trotter PR
+when `matExp_lim_product` (Banach-algebra Trotter product formula) closes
+its step-1 assembly on `research/trotter-l1-l2-l3-drafts`.
+
+Blast-radius (downstream consumer-bundle impact):
+* TrotterProduct → matrix-Lieb concavity bridge for Golden-Thompson chain.
+* MatrixLieb → Lieb-concavity + Golden-Thompson, foundation for matrix
+  concentration sub-Gaussian bounds.
+* MatrixBernstein / MatrixBernsteinFull → matrix concentration headline
+  inequalities used across paper-claim-defense for randomised numerical
+  linear-algebra bundles.
+* WaldIdentity → optional-stopping moment identities (corrected with
+  uniform-integrability hypothesis) — gating for SPRT + sequential-test
+  bundles.
+* TraceInequalities → PSD trace machinery underpinning all matrix
+  concentration arguments.
+* PeierlsBogoliubov → trace_eigenvalues_eq bridge for sandwich bounds.
+* GoldenThompsonCommutative → commute-case GT used as a stepping-stone
+  toward the full non-commutative Golden-Thompson via the Trotter chain.
+
+Trusted-triple expected: {propext, Classical.choice, Quot.sound}.
+-/
+
+/-! ### TrotterProduct — Banach-algebra Trotter product formula
+
+L1-L5 sub-lemmas closed; `matExp_lim_product` step-1 assembly lands on
+this branch — entry becomes trusted-triple once step 1 closes.
+-/
+
+#print axioms Pythia.TrotterProduct.L1_taylor_remainder
+#print axioms Pythia.TrotterProduct.L2_cross_term
+#print axioms Pythia.TrotterProduct.L3_pow_sub_pow_norm_le
+#print axioms Pythia.TrotterProduct.L4_norm_exp_le
+#print axioms Pythia.TrotterProduct.L5_squared_remainder_bound
+#print axioms Pythia.TrotterProduct.matExp_lim_product
+
+/-! ### MatrixLieb — Hermitian functional calculus + Lieb concavity -/
+
+#print axioms MatrixLieb.hermFuncCalc_id
+#print axioms MatrixLieb.hermFuncCalc_isHermitian
+#print axioms MatrixLieb.traceConj_eq_trace
+#print axioms MatrixLieb.trace_hermFuncCalc_eq_sum
+#print axioms MatrixLieb.matExp_posDef
+#print axioms MatrixLieb.matExp_isHermitian
+#print axioms MatrixLieb.matLog_isHermitian
+#print axioms MatrixLieb.trace_matExp_eq_sum
+#print axioms MatrixLieb.hermFuncCalc_eq_hA_cfc
+#print axioms MatrixLieb.hermFuncCalc_eq_cfc
+#print axioms MatrixLieb.hermFuncCalc_comp
+#print axioms MatrixLieb.hermFuncCalc_congr
+#print axioms MatrixLieb.matExp_matLog
+#print axioms MatrixLieb.matLog_matExp
+#print axioms MatrixLieb.IsHermitian_add
+#print axioms MatrixLieb.IsHermitian_smul
+#print axioms MatrixLieb.lieb_concavity
+#print axioms MatrixLieb.lieb_concavity_in_X
+#print axioms MatrixLieb.lieb_concavity_s_eq_zero
+#print axioms MatrixLieb.trace_exp_log_le_trace_mul
+#print axioms MatrixLieb.golden_thompson
+
+/-! ### MatrixBernstein — self-adjoint / Hoeffding / Chernoff headlines -/
+
+#print axioms Pythia.matrixBernstein_self_adjoint
+#print axioms Pythia.matrixHoeffding_self_adjoint
+#print axioms Pythia.matrixChernoff_psd
+
+/-! ### MatrixBernsteinFull — Laplace-transform / scalar-step / two-sided
+
+(`matrix_bernstein_laplace_step` is commented-out in the source pending the
+linftyOp→spectral-norm refactor; skipped here intentionally.)
+-/
+
+#print axioms Pythia.MatrixBernsteinFull.psi_nonneg
+#print axioms Pythia.MatrixBernsteinFull.psi_ge_bernstein_bound
+#print axioms Pythia.MatrixBernsteinFull.optimal_theta_pos'
+#print axioms Pythia.MatrixBernsteinFull.scalar_bernstein_eval
+#print axioms Pythia.MatrixBernsteinFull.scalar_bernstein_optimization
+#print axioms Pythia.MatrixBernsteinFull.matrix_bernstein
+#print axioms Pythia.MatrixBernsteinFull.matrix_bernstein_two_sided
+
+/-! ### WaldIdentity — corrected optional-stopping moment identities
+
+(`wald_identity_ORIGINAL_FALSE` and `wald_identity_squared_ORIGINAL_FALSE`
+are documentation-only in `/- ... -/` blocks; not real definitions.)
+-/
+
+#print axioms Pythia.MTUnbounded.optional_stopping_unbounded
+#print axioms Pythia.partialSum_succ
+#print axioms Pythia.wald_identity
+#print axioms Pythia.wald_identity_centered
+#print axioms Pythia.wald_identity_centered_via_optional_stopping
+#print axioms Pythia.wald_identity_squared
+#print axioms Pythia.wald_identity_exp
+#print axioms Pythia.wald_identity_squared_via_optional_stopping
+#print axioms Pythia.wald_identity_exp_via_optional_stopping
+
+/-! ### TraceInequalities — PSD trace machinery -/
+
+#print axioms Pythia.TraceInequalities.trace_re_nonneg_of_posSemidef
+#print axioms Pythia.TraceInequalities.trace_monotone
+#print axioms Pythia.TraceInequalities.trace_sandwich_nonneg
+#print axioms Pythia.TraceInequalities.trace_conjTranspose_mul_self_nonneg
+
+/-! ### PeierlsBogoliubov -/
+
+#print axioms Pythia.PeierlsBogoliubov.trace_eigenvalues_eq
+
+/-! ### GoldenThompsonCommutative — commute-case stepping stone -/
+
+#print axioms Pythia.GoldenThompsonCommutative.commute_exp_exp
+#print axioms Pythia.GoldenThompsonCommutative.exp_add_of_commute_matrix
+#print axioms Pythia.GoldenThompsonCommutative.golden_thompson_commute
+#print axioms Pythia.GoldenThompsonCommutative.golden_thompson_commute_symm
+
+
+/-! ## Tier-2-candidate additions — orchestrator classification pending
+
+The three clusters below surfaced during the Tier 2 enumeration but were
+not in the original Tier 2 routing list.  Tag at hand-off time per
+`terminal-leaf-paper-defense` vs `customer-bundle-FP-surface`:
+
+* LogSumExp — basic positivity + lower bound; called from any softmax /
+  log-likelihood headline.  Lean: Tier 2 (foundational).
+* Lundberg — actuarial ruin-probability inequality cluster; paper-headline
+  shape (classical inequality + supermartingale + ruin-prob bound).
+  Lean: Tier 2 (paper-headline).
+* MeasureTheory.PathMeasureRN — infinite-product Radon-Nikodym + Kakutani
+  dichotomy machinery; foundational for stochastic-process arguments.
+  Lean: Tier 2 (foundational paper-claim-defense).
+
+If orchestrator categorises any as customer-bundle FP-surface instead,
+fold into Tier 3 stacked-commit on `research/ath-1257-tier3-numerical-prestage`.
+-/
+
+/-! ### LogSumExp -/
+
+#print axioms Pythia.LogSumExp.sum_exp_pos
+#print axioms Pythia.LogSumExp.log_sum_exp_ge_single
+
+/-! ### Lundberg — ruin-probability inequality + supermartingale chain -/
+
+#print axioms Pythia.one_add_le_exp
+#print axioms Pythia.secant_exp_strict_mono
+#print axioms Pythia.secant_exp_mono
+#print axioms Pythia.X_not_ae_zero
+#print axioms Pythia.integrable_exp_of_adjustment
+#print axioms Pythia.adjustment_coeff_unique
+#print axioms Pythia.mgf_net_loss_le_one
+#print axioms Pythia.individual_ruin_bound
+#print axioms Pythia.ruin_event_eq_union
+#print axioms Pythia.exp_process_supermartingale
+#print axioms Pythia.ruin_prob_le_exp
+#print axioms Pythia.lundberg_inequality
+
+/-! ### MeasureTheory.PathMeasureRN — infinite-product RN-deriv + Kakutani -/
+
+#print axioms PathMeasureRN.pi_eq_withDensity_finProdRNDeriv
+#print axioms PathMeasureRN.measurable_finProdRNDeriv
+#print axioms PathMeasureRN.finProdMeasure_rnDeriv_eq_prod
+#print axioms PathMeasureRN.finProd_absolutelyContinuous
+#print axioms PathMeasureRN.infProdMeasure_exists
+#print axioms PathMeasureRN.partialRNDeriv_zero
+#print axioms PathMeasureRN.partialRNDeriv_succ
+#print axioms PathMeasureRN.measurable_rnDeriv_comp
+#print axioms PathMeasureRN.measurable_partialRNDeriv
+#print axioms PathMeasureRN.pathMeasure_rnDeriv_eq_tprod
+#print axioms PathMeasureRN.kakutani_dichotomy
+#print axioms PathMeasureRN.partialRNDeriv_pos
+#print axioms PathMeasureRN.lintegral_partialRNDeriv_eq_one
+
+-- ============================================================================
+-- END Tier 2 audit-amend
+-- ============================================================================
